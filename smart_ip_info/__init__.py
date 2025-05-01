@@ -6,7 +6,7 @@
 # --------------------------------------------------------
 # https://github.com/smartlegionlab/
 # --------------------------------------------------------
-"""Smart IP info"""
-__version__ = '0.0.1'
+"""Smart IP info - A simple command-line tool to get information about IP addresses."""
+__version__ = '0.0.2'
 __author__ = 'A.A. Suvorov'
 __email__ = 'smartlegiondev@gmail.com'

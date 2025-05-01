@@ -1,6 +1,24 @@
-# Smart Ip Info <sup>0.0.1</sup>
+# Smart Ip Info <sup>0.0.2</sup>
 
 A simple command-line tool to get information about IP addresses.
+
+---
+
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-ip-info)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/smart-ip-info?label=pypi%20downloads)](https://pypi.org/project/smart-ip-info/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smart-ip-info)](https://github.com/smartlegionlab/smart-ip-info/)
+[![GitHub](https://img.shields.io/github/license/smartlegionlab/smart-ip-info)](https://github.com/smartlegionlab/smart-ip-info/blob/master/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/smart-ip-info)](https://pypi.org/project/smart-ip-info)
+[![PyPI - Format](https://img.shields.io/pypi/format/smart-ip-info)](https://pypi.org/project/smart-ip-info)
+[![GitHub Repo stars](https://img.shields.io/github/stars/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
+[![GitHub watchers](https://img.shields.io/github/watchers/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
+[![GitHub forks](https://img.shields.io/github/forks/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
+
+[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info)](https://pepy.tech/projects/smart-ip-info)
+[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info/month)](https://pepy.tech/projects/smart-ip-info)
+[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info/week)](https://pepy.tech/projects/smart-ip-info)
+
+---
 
 ## Usage
 
@@ -9,16 +27,16 @@ A simple command-line tool to get information about IP addresses.
 ### Installation
 
 ```bash
-pip install ipinfo-cli
+pip install smart-ip-info
 ```
 
 ```bash
-ipinfo --ip 8.8.8.8
+smart-ip-info --ip 8.8.8.8
 ```
 
 Or run without arguments to be prompted for an IP (or get info about your current IP if left empty):
 
-`ipinfo`
+`smart-ip-info`
 
 ### Output
 

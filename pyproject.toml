@@ -1,6 +1,6 @@
 [project]
 name = "smart-ip-info"
-version = "0.0.2"
+version = "0.1.0"
 description = "A simple tool to get information about IP addresses."
 authors = [
     {name = "A.A. Suvorov", email = "smartlegiondev@email.com"}
@@ -14,9 +14,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Intended Audience :: System Administrators",
     "Topic :: Utilities"
-]
-dependencies = [
-    "requests>=2.25.0",
 ]
 
 [project.urls]

@@ -1,59 +1,91 @@
-# Smart Ip Info <sup>0.0.2</sup>
-
-A simple command-line tool to get information about IP addresses.
-
----
+# Smart IP Info <sup>0.1.0</sup>
 
 ![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-ip-info)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/smart-ip-info?label=pypi%20downloads)](https://pypi.org/project/smart-ip-info/)
+![PyPI](https://img.shields.io/pypi/v/smart-ip-info)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/smart-ip-info?label=pypi%20downloads)
+![GitHub License](https://img.shields.io/github/license/smartlegionlab/smart-ip-info)
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smart-ip-info)](https://github.com/smartlegionlab/smart-ip-info/)
-[![GitHub](https://img.shields.io/github/license/smartlegionlab/smart-ip-info)](https://github.com/smartlegionlab/smart-ip-info/blob/master/LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/smart-ip-info)](https://pypi.org/project/smart-ip-info)
 [![PyPI - Format](https://img.shields.io/pypi/format/smart-ip-info)](https://pypi.org/project/smart-ip-info)
 [![GitHub Repo stars](https://img.shields.io/github/stars/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
 [![GitHub watchers](https://img.shields.io/github/watchers/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
 [![GitHub forks](https://img.shields.io/github/forks/smartlegionlab/smart-ip-info?style=social)](https://github.com/smartlegionlab/smart-ip-info/)
 
-[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info)](https://pepy.tech/projects/smart-ip-info)
-[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info/month)](https://pepy.tech/projects/smart-ip-info)
-[![PyPI Downloads](https://static.pepy.tech/badge/smart-ip-info/week)](https://pepy.tech/projects/smart-ip-info)
+A simple command-line tool to get information about IP addresses.
 
----
+## 🌟 Features
 
-## Usage
+- 100% pure Python (no external dependencies)
+- Supports both CLI and programmatic usage
+- Fast IP lookup (uses ip-api.com free tier)
+- Detailed network information
+- Clean, developer-friendly output
+- Privacy-focused (no tracking)
 
-`python -m smart_ip_info --ip <ip>`
-
-### Installation
+## 📦 Installation
 
 ```bash
 pip install smart-ip-info
 ```
 
+Or for the latest development version:
+
+```bash
+pip install git+https://github.com/smartlegionlab/smart-ip-info.git
+```
+
+## 🚀 Usage
+
+### Command Line Interface
+
+Basic usage:
 ```bash
 smart-ip-info --ip 8.8.8.8
 ```
 
-Or run without arguments to be prompted for an IP (or get info about your current IP if left empty):
-
-`smart-ip-info`
-
-### Output
-
+Interactive mode (prompts for IP):
+```bash
+smart-ip-info
 ```
+
+### Python API
+
+```python
+from smart_ip_info import get_ip_info, format_ip_info
+
+# Get info about an IP
+info = get_ip_info("8.8.8.8")
+
+# Get info about your own IP
+my_info = get_ip_info()
+
+# Format results
+print(format_ip_info(info))
+```
+
+## 📊 Example Output
+
+```plaintext
 IP Address: 8.8.8.8
-Country: United States
-Region: California
+Country: United States (US)
+Region: California (CA)
 City: Mountain View
-ZIP Code: 94043
+ZIP: 94043
 Coordinates: 37.4056, -122.0775
 Timezone: America/Los_Angeles
 ISP: Google LLC
 Organization: Google Public DNS
-AS Number: AS15169 Google LLC
+AS: AS15169 Google LLC
 Proxy: False
 Hosting: True
 ```
+---
+
+## ⚠️ Limitations
+
+- Free tier has 45 requests/minute limit
+- No commercial API support (yet)
+- IPv6 support is limited
 
 ***
 

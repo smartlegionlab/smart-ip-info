@@ -6,58 +6,67 @@
 # --------------------------------------------------------
 # https://github.com/smartlegionlab/
 # --------------------------------------------------------
-import requests
+import urllib.request
+import urllib.error
+import json
+from typing import Optional, Dict, Any
 
 
-def get_ip_info(ip_address=None):
-    url = f"http://ip-api.com/json/{ip_address}" if ip_address else "http://ip-api.com/json/"
-    params = {
-        'fields': 'status,message,continent,continentCode,country,countryCode,region,regionName,'
-                  'city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,'
-                  'reverse,mobile,proxy,hosting,query'
-    }
+def get_ip_info(ip_address: Optional[str] = None) -> Dict[str, Any]:
+    base_url = "http://ip-api.com/json/"
+    url = f"{base_url}{ip_address}" if ip_address else base_url
+    fields = [
+        'status', 'message', 'country', 'countryCode', 'region', 'regionName',
+        'city', 'zip', 'lat', 'lon', 'timezone', 'isp', 'org', 'as',
+        'mobile', 'proxy', 'hosting', 'query'
+    ]
+    params = f"?fields={','.join(fields)}"
 
     try:
-        response = requests.get(url, params=params)
-        response.raise_for_status()
-        data = response.json()
+        with urllib.request.urlopen(f"{url}{params}", timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
 
-        if data.get('status') == 'fail':
-            raise ValueError(data.get('message', 'Unknown error'))
+            if data.get('status') == 'fail':
+                raise ValueError(data.get('message', 'Unknown error'))
 
-        return data
-    except requests.RequestException as e:
-        raise ValueError(f"Error fetching IP info: {str(e)}")
+            return data
+
+    except urllib.error.URLError as e:
+        raise ValueError(f"Network error: {e.reason}")
+    except json.JSONDecodeError:
+        raise ValueError("Invalid API response")
+    except Exception as e:
+        raise ValueError(f"Unexpected error: {str(e)}")
 
 
-def format_ip_info(ip_info):
+def format_ip_info(ip_info: Dict[str, Any]) -> str:
     if not ip_info or ip_info.get('status') == 'fail':
         return "Failed to get IP information"
 
-    formatted = []
-    fields = [
-        ('IP Address', 'query'),
-        ('Country', 'country'),
-        ('Region', 'regionName'),
-        ('City', 'city'),
-        ('ZIP Code', 'zip'),
-        ('Coordinates', lambda x: f"{x['lat']}, {x['lon']}"),
-        ('Timezone', 'timezone'),
-        ('ISP', 'isp'),
-        ('Organization', 'org'),
-        ('AS Number', 'as'),
-        ('Mobile', 'mobile'),
-        ('Proxy', 'proxy'),
-        ('Hosting', 'hosting')
-    ]
+    result = []
+    mappings = {
+        'IP Address': 'query',
+        'Country': lambda x: f"{x.get('country')} ({x.get('countryCode')})",
+        'Region': lambda x: f"{x.get('regionName')} ({x.get('region')})",
+        'City': 'city',
+        'ZIP': 'zip',
+        'Coordinates': lambda x: f"{x.get('lat')}, {x.get('lon')}",
+        'Timezone': 'timezone',
+        'ISP': 'isp',
+        'Organization': 'org',
+        'AS': 'as',
+        'Mobile': 'mobile',
+        'Proxy': 'proxy',
+        'Hosting': 'hosting'
+    }
 
-    for name, key in fields:
-        if callable(key):
-            value = key(ip_info)
-        else:
-            value = ip_info.get(key)
+    for name, key in mappings.items():
+        try:
+            value = key(ip_info) if callable(key) else ip_info.get(key)
+            if value not in (None, '', False):
+                result.append(f"{name}: {value}")
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            continue
 
-        if value not in (None, ''):
-            formatted.append(f"{name}: {value}")
-
-    return "\n".join(formatted)
+    return "\n".join(result)

@@ -1,6 +1,6 @@
 [project]
 name = "smart-ip-info"
-version = "0.1.0"
+version = "0.0.1"
 description = "A simple tool to get information about IP addresses."
 authors = [
     {name = "A.A. Suvorov", email = "smartlegiondev@email.com"}
@@ -21,7 +21,7 @@ Homepage = "https://github.com/smartlegionlab/smart-ip-info"
 Documentation = "https://github.com/smartlegionlab/smart-ip-info#readme"
 
 [project.scripts]
-ipinfo = "smart_ip_info.cli:main"
+smart-ip-info = "smart_ip_info.cli:main"
 
 [build-system]
 requires = ["setuptools>=68.0.0", "wheel"]

@@ -1,6 +1,6 @@
 [project]
 name = "smart-ip-info"
-version = "0.0.1"
+version = "0.1.1"
 description = "A simple tool to get information about IP addresses."
 authors = [
     {name = "A.A. Suvorov", email = "smartlegiondev@email.com"}

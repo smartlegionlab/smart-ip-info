@@ -1,4 +1,4 @@
-# Smart IP Info <sup>0.1.3</sup>
+# Smart IP Info <sup>v0.1.3</sup>
 
 ![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-ip-info)
 ![PyPI](https://img.shields.io/pypi/v/smart-ip-info)
